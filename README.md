@@ -226,7 +226,7 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 
 ## 👥 Autores
 
-- **Seu Nome** - *Desenvolvimento inicial* - [SeuGitHub](https://github.com/seu-usuario)
+- **Rogério** - *Desenvolvimento inicial* - [SeuGitHub](https://github.com/devjogerio)
 
 ## 🙏 Agradecimentos
 
