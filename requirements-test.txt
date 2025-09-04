@@ -1,0 +1,44 @@
+# Dependências para testes do Instagram Investigator
+
+# Framework de testes
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+pytest-xdist>=3.0.0  # Para execução paralela de testes
+
+# Análise de cobertura
+coverage>=7.0.0
+
+# Mocking e fixtures
+responses>=0.23.0  # Para mock de requisições HTTP
+factory-boy>=3.2.0  # Para criação de dados de teste
+faker>=18.0.0  # Para geração de dados falsos
+
+# Testes de performance
+pytest-benchmark>=4.0.0
+
+# Relatórios e documentação de testes
+pytest-html>=3.1.0  # Relatórios HTML
+pytest-json-report>=1.5.0  # Relatórios JSON
+allure-pytest>=2.12.0  # Relatórios Allure (opcional)
+
+# Utilitários para testes
+freezegun>=1.2.0  # Para mock de tempo/data
+testfixtures>=7.0.0  # Utilitários para testes
+
+# Dependências do projeto (caso não estejam no requirements.txt principal)
+requests>=2.28.0
+matplotlib>=3.5.0
+pandas>=1.5.0
+networkx>=2.8.0
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+
+# Ferramentas de qualidade de código (para CI/CD)
+flake8>=5.0.0
+black>=22.0.0
+isort>=5.10.0
+mypy>=1.0.0
+
+# Dependências para testes de interface gráfica (se necessário)
+# pytest-qt>=4.2.0  # Para testes de GUI Qt/Tkinter

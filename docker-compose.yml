@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  instagram-investigator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: instagram_investigator_app
+    restart: unless-stopped
+    
+    # Configuração para GUI via X11 (Linux)
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+      - PYTHONUNBUFFERED=1
+    
+    volumes:
+      # Monta diretórios para persistência de dados
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+      - ./exports:/app/exports
+      - ./.env:/app/.env:ro
+      # Para X11 forwarding (Linux)
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    
+    networks:
+      - investigator-network
+    
+    # Configurações de recursos
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    
+    # Healthcheck
+    healthcheck:
+      test: ["CMD", "python", "-c", "import tkinter; print('OK')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Serviço opcional para desenvolvimento com hot-reload
+  instagram-investigator-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: instagram_investigator_dev
+    restart: "no"
+    
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+      - PYTHONUNBUFFERED=1
+      - DEVELOPMENT=1
+    
+    volumes:
+      # Monta código fonte para desenvolvimento
+      - .:/app
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    
+    networks:
+      - investigator-network
+    
+    profiles:
+      - dev
+    
+    command: python tkinter_app.py
+
+networks:
+  investigator-network:
+    driver: bridge
+    name: instagram_investigator_network
+
+# Volumes nomeados para persistência
+volumes:
+  investigator_logs:
+    driver: local
+  investigator_cache:
+    driver: local
+  investigator_exports:
+    driver: local

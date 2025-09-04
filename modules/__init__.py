@@ -1,0 +1,1 @@
+# Pacote de módulos para Instagram Investigator
